@@ -1,4 +1,4 @@
-import { UserService } from './../services/user.service';
+import { UserService } from '../../../core/services/user.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -29,13 +29,10 @@ export class LoginComponent implements OnInit {
   }
 
   submitLogin() {
-    this.userService.login(this.form.value).subscribe((data) => {
-      console.log(data);
-      localStorage.setItem('authToken', data['token']);
-      localStorage.setItem('username', data['username']);
-      localStorage.setItem('isAdmin', data['isAdmin']);
-    });
-    this.router.navigate(['/home']);
+    if (this.form.valid) {
+      this.userService.login(this.form.value).subscribe();
+      this.router.navigate(['/home']);
+    }
   }
 
   get f() {

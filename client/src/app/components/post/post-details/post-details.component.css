@@ -1,0 +1,9 @@
+.likes,
+.hates {
+    margin: 0;
+}
+
+.likers,
+.haters {
+    text-decoration: underline;
+}

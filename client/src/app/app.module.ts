@@ -1,29 +1,47 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import { ToastrModule } from 'ngx-toastr';
+
+import { CoreModule } from './core/core.module';
+import { SharedModule } from './components/shared/shared.module';
 import { AppRoutingModule } from './app-routing.module';
-import { HttpClientModule } from '@angular/common/http';
+
+import { JwtInterceptorService } from './core/interceptors/jwt-interceptor.service';
+import { MsgInterceptorService } from './core/interceptors/msg-interceptor.service';
 
 import { AppComponent } from './app.component';
-import { NavBarComponent } from './components/common/nav-bar/nav-bar.component';
-import { FooterComponent } from './components/common/footer/footer.component';
 import { HomeComponent } from './components/home/home.component';
-import { NotFoundComponent } from './components/common/not-found/not-found.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavBarComponent,
-    FooterComponent,
     HomeComponent,
-    NotFoundComponent,
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
+    SharedModule,
+    CoreModule.forRoot(),
+    ToastrModule.forRoot({
+      newestOnTop: false,
+    }),
     AppRoutingModule,
-    HttpClientModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: JwtInterceptorService,
+      multi: true,
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: MsgInterceptorService,
+      multi: true,
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

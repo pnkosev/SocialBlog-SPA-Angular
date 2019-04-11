@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 
+import { UserService } from 'src/app/core/services/user.service';
+
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -11,6 +13,7 @@ export class RegisterComponent implements OnInit {
   form;
 
   constructor(
+    private userService: UserService,
     private fb: FormBuilder,
     private router: Router,
   ) { }
@@ -37,7 +40,7 @@ export class RegisterComponent implements OnInit {
   }
 
   submitRegister() {
-    console.log(this.form);
+    this.userService.register(this.form.value).subscribe();
     this.router.navigate(['/home']);
   }
 

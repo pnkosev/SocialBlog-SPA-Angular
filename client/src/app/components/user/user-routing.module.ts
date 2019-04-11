@@ -1,32 +1,33 @@
-import { LoginComponent } from './login/login.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { RegisterComponent } from './register/register.component';
 import { ProfileComponent } from './profile/profile.component';
+import { LoginComponent } from './login/login.component';
 
-import { UserProfileResolver } from './services/user-profile.resolver';
+import { GetAllPostsResolver } from '../../core/resolvers/get-all-posts.resolver';
+
+
 
 const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    redirectTo: 'login',
-    component: LoginComponent
-  },
-  {
-    path: 'login',
-    component: LoginComponent,
+    redirectTo: 'login'
   },
   {
     path: 'register',
     component: RegisterComponent,
   },
   {
+    path: 'login',
+    component: LoginComponent,
+  },
+  {
     path: 'profile',
     component: ProfileComponent,
     resolve: {
-      userProfile: UserProfileResolver,
+      userPosts: GetAllPostsResolver,
     }
   }
 ];
