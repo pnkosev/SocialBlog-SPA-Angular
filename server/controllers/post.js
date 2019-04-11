@@ -128,7 +128,7 @@ module.exports = {
 				return Promise.all([
 					User.updateMany({}, { '$pull': { 'comments': { '$in': comms } } }),
 					Post.findByIdAndDelete(postId),
-					Comment.deleteMany({post: postId}),
+					Comment.deleteMany({ post: postId }),
 					User.findById(post.creator),
 				]);
 			})
@@ -158,7 +158,7 @@ module.exports = {
 			.findById(postId)
 			.populate({
 				path: 'comments',
-				match: { status:  'Approved' },
+				match: { status: 'Approved' },
 				populate: {
 					path: 'creator'
 				}
@@ -172,7 +172,7 @@ module.exports = {
 					error.statusCode = 404;
 					throw error;
 				}
-				
+
 				res
 					.status(200)
 					.json({
@@ -252,33 +252,33 @@ module.exports = {
 	approvePost: (req, res, next) => {
 		const postId = req.params.postId;
 
-        Post
-            .findById(postId)
-            .then((post) => {
-                if (!post) {
-                    const error = new Error('Post not found');
-                    error.statusCode = 404;
-                    throw error;
-                }
-                post.status = 'Approved';
-                return post.save();
-            })
-            .then((post) => {
-                res
-                    .status(200)
-                    .json({
+		Post
+			.findById(postId)
+			.then((post) => {
+				if (!post) {
+					const error = new Error('Post not found');
+					error.statusCode = 404;
+					throw error;
+				}
+				post.status = 'Approved';
+				return post.save();
+			})
+			.then((post) => {
+				res
+					.status(200)
+					.json({
 						success: true,
-                        message: 'Post approved!',
-                        post
-                })
-            })
-            .catch((error) => {
-                if (!error.statusCode) {
-                    error.statusCode = 500;
-                }
+						message: 'Post approved!',
+						post
+					})
+			})
+			.catch((error) => {
+				if (!error.statusCode) {
+					error.statusCode = 500;
+				}
 
-                next(error);
-            });
+				next(error);
+			});
 	},
 	likePost: (req, res, next) => {
 		const postId = req.params.postId;
@@ -286,19 +286,19 @@ module.exports = {
 		Post
 			.findById(postId)
 			.then((post) => {
-				if(post.creator.toString() === req.userId) {
+				if (post.creator.toString() === req.userId) {
 					const error = new Error('You narcissitic bastard, you cannot like your own post!');
 					error.statusCode = 422;
 					throw error;
 				}
 
-				if(post.likes.indexOf(req.userId) !== -1) {
+				if (post.likes.indexOf(req.userId) !== -1) {
 					const error = new Error('You have already liked this post!');
 					error.statusCode = 422;
 					throw error;
 				}
 
-				if(post.hates.indexOf(req.userId) !== -1) {
+				if (post.hates.indexOf(req.userId) !== -1) {
 					post.hates.pull(req.userId);
 				}
 
@@ -306,7 +306,11 @@ module.exports = {
 				return post.save();
 			})
 			.then(() => {
-				return Post.findById(postId).populate('likes', 'username _id').populate('hates', 'username _id');
+				return Post
+					.findById(postId)
+					.populate('creator', 'username _id')
+					.populate('likes', 'username _id')
+					.populate('hates', 'username _id');
 			})
 			.then((post) => {
 				res.status(200).json({
@@ -329,19 +333,19 @@ module.exports = {
 		Post
 			.findById(postId)
 			.then((post) => {
-				if(post.creator.toString() === req.userId) {
+				if (post.creator.toString() === req.userId) {
 					const error = new Error('Cannot hate your posts yo!');
 					error.statusCode = 422;
 					throw error;
 				}
 
-				if(post.hates.indexOf(req.userId) !== -1) {
+				if (post.hates.indexOf(req.userId) !== -1) {
 					const error = new Error('You have hated enough this poor post!');
 					error.statusCode = 422;
 					throw error;
 				}
 
-				if(post.likes.indexOf(req.userId) !== -1) {
+				if (post.likes.indexOf(req.userId) !== -1) {
 					post.likes.pull(req.userId);
 				}
 
@@ -349,7 +353,11 @@ module.exports = {
 				return post.save();
 			})
 			.then(() => {
-				return Post.findById(postId).populate('hates', 'username _id').populate('likes', 'username _id');
+				return Post
+					.findById(postId)
+					.populate('creator', 'username _id')
+					.populate('hates', 'username _id')
+					.populate('likes', 'username _id');
 			})
 			.then((post) => {
 				res.status(200).json({

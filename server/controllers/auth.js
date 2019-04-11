@@ -40,8 +40,8 @@ module.exports = {
 						username: user.username,
 						userId: user._id.toString()
 					}, config.JWTSecret, {
-						expiresIn: '1h'
-					});
+							expiresIn: '1h'
+						});
 
 					res.status(201)
 						.json({
@@ -86,8 +86,8 @@ module.exports = {
 						username: user.username,
 						userId: user._id.toString()
 					}, config.JWTSecret, {
-						expiresIn: '1h'
-					});
+							expiresIn: '1h'
+						});
 
 					res.status(200).json({
 						success: true,
@@ -114,7 +114,7 @@ module.exports = {
 			.findById(userId)
 			.populate({
 				path: 'posts',
-				match: { status:  'Approved' }
+				match: { status: 'Approved' }
 			})
 			.then(user => {
 				if (user.posts.length) {
@@ -124,7 +124,7 @@ module.exports = {
 							success: true,
 							message: `Here are your posts, ${user.username}!`,
 							posts: user.posts
-					});
+						});
 				} else {
 					res
 						.status(200)
@@ -132,7 +132,7 @@ module.exports = {
 							success: true,
 							message: `Currently you have no posts, ${user.username}!`,
 							posts: user.posts
-					});
+						});
 				}
 			})
 			.catch(error => {
@@ -142,5 +142,13 @@ module.exports = {
 
 				next(error);
 			})
+	},
+	logout: (req, res, next) => {
+		res
+			.status(200)
+			.json({
+				success: true,
+				message: `You successfully logged out!`
+			});
 	}
 }
