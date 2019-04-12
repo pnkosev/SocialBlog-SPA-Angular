@@ -32,7 +32,7 @@ module.exports = {
 					.status(200)
 					.json({
 						success: true,
-						message: 'Fetched posts successfully.',
+						// message: 'Fetched posts successfully.',
 						posts
 					});
 			})
@@ -54,7 +54,7 @@ module.exports = {
 					.status(200)
 					.json({
 						success: true,
-						message: 'Fetched posts successfully.',
+						// message: 'Fetched posts successfully.',
 						posts
 					});
 			})
@@ -178,7 +178,7 @@ module.exports = {
 					.status(200)
 					.json({
 						success: true,
-						message: 'Post fetched.',
+						// message: 'Post fetched.',
 						post
 					})
 			})

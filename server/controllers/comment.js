@@ -218,7 +218,7 @@ module.exports = {
 					.status(200)
 					.json({
 						success: true,
-						message: 'Comments fetched.',
+						// message: 'Comments fetched.',
 						comments
 					})
             })
