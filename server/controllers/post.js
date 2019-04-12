@@ -160,7 +160,8 @@ module.exports = {
 				path: 'comments',
 				match: { status: 'Approved' },
 				populate: {
-					path: 'creator'
+					path: 'creator',
+					select: 'username _id'
 				}
 			})
 			.populate('likes', 'username _id')
