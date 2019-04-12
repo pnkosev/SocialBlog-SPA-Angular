@@ -33,30 +33,11 @@
       </ng-template>
       <hr>
 
-
-      <!-- Comments Form -->
-      <!-- <div class="card my-4">
-            <h5 class="card-header">Leave a Comment:</h5>
-            <div class="card-body">
-              <form>
-                <div class="form-group">
-                  <textarea class="form-control" rows="3"></textarea>
-                </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
-              </form>
-            </div>
-          </div> -->
+      <!-- Comment Create -->
+      <app-comment-create (submitCommentEmitter)="postComment($event)"></app-comment-create>
 
       <!-- Single Comment -->
-      <div class="media mb-4">
-        <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
-        <div class="media-body">
-          <h5 class="mt-0">Commenter Name</h5>
-          Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio,
-          vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec
-          lacinia congue felis in faucibus.
-        </div>
-      </div>
+      <app-comment *ngFor="let comment of post.comments" [comment]="comment" (deleteCommentEmitter)="deleteComment($event)"></app-comment>
 
     </div>
 
@@ -85,7 +66,7 @@
               <button class="btn btn-secondary" (click)="like()">Like</button>
               <p class="text-center likes">{{post.likes.length}}</p>
             </div>
-            <div class="col-lg-6">
+            <div class="col-lg-6 text-center">
               <button class="btn btn-secondary" (click)="hate()">Hate</button>
               <p class="text-center hates">{{post.hates.length}}</p>
             </div>
@@ -99,20 +80,26 @@
         <div class="card-body">
           <div class="row">
             <div class="col-lg-6 text-center">
-              <span class="likers">LIKERS:</span>
-              <ul class="list-unstyled mb-0" *ngFor="let like of post.likes">
-                <li>
-                  {{like.username}}
-                </li>
-              </ul>
+              <p class="likers">LIKERS:</p>
+              <div *ngIf="post.likes.length;else nuffin">
+                <ul class="list-unstyled mb-0" *ngFor="let like of post.likes">
+                  <li>
+                    {{like.username}}
+                  </li>
+                </ul>
+              </div>
+              <ng-template #nuffin>Nobody</ng-template>
             </div>
             <div class="col-lg-6 text-center">
-              <span class="likers">HATERS:</span>
-              <ul class="list-unstyled mb-0" *ngFor="let hate of post.hates">
-                <li>
-                  {{hate.username}}
-                </li>
-              </ul>
+              <p class="likers">HATERS:</p>
+              <div *ngIf="post.hates.length; else nuffin">
+                <ul class="list-unstyled mb-0" *ngFor="let hate of post.hates">
+                  <li>
+                    {{hate.username}}
+                  </li>
+                </ul>
+              </div>
+              <ng-template #nuffin>Nobody... for now...</ng-template>
             </div>
           </div>
         </div>

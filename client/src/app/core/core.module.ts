@@ -5,6 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { GetAllPostsResolver } from './resolvers/get-all-posts.resolver';
 import { UserService } from './services/user.service';
 import { PostService } from './services/post.service';
+import { CommentService } from './services/comment.service';
 
 @NgModule({
   declarations: [],
@@ -26,6 +27,7 @@ export class CoreModule {
       providers: [
         UserService,
         PostService,
+        CommentService,
         GetAllPostsResolver
       ]
     };

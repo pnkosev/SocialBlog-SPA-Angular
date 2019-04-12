@@ -2,7 +2,7 @@
   <img class="card-img-top" src="{{post.imageUrl}}" alt="Card image cap">
   <div class="card-body">
     <h5 class="card-title">{{post.title}}</h5>
-    <p class="card-text">{{post.content | slice:0:20}}</p>
+    <p class="card-text">{{post.content | slice:0:20}}...</p>
     <a routerLink="/post/details/{{post._id}}" class="btn btn-primary">Details</a>
   </div>
 </div>

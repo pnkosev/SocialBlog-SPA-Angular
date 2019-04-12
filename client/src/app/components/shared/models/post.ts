@@ -6,6 +6,6 @@ export interface Post {
     creator: { _id: string, username: string };
     likes: [{ _id: string, username: string }];
     hates: [{ _id: string, username: string }];
-    comments: [{ _id: string, username: string, content: string }];
+    comments: [{ _id: string, content: string, status: string, creator: { _id: string, username: string } }];
     status: string;
 }

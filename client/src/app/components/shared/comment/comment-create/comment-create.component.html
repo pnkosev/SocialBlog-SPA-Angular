@@ -1,0 +1,20 @@
+<div class="card my-4">
+  <h5 class="card-header">Leave a Comment:</h5>
+  <div class="card-body">
+    <form [formGroup]="form" (submit)="submitComment()">
+      <div class="form-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text"> <i class="fas fa-comment"></i> </span>
+        </div>
+        <textarea class="form-control" rows="3" formControlName="content"></textarea>
+      </div>
+      <div class="alert alert-danger" *ngIf="f?.content?.touched && f?.content.errors?.required">
+        This field is required!
+      </div>
+      <div class="alert alert-danger" *ngIf="f?.content?.touched && f?.content?.errors?.pattern">
+        Please provide a valid title (minimum 10 symbols)!
+      </div>
+      <button type="submit" class="btn btn-primary" [disabled]="form.invalid">Submit</button>
+    </form>
+  </div>
+</div>

@@ -1,3 +1,4 @@
+import { AdminToolComponent } from './admin-tool/admin-tool.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
@@ -29,7 +30,12 @@ const routes: Routes = [
     resolve: {
       userPosts: GetAllPostsResolver,
     }
-  }
+  },
+  {
+    path: 'admin-tool',
+    component: AdminToolComponent,
+    canActivate: []
+  },
 ];
 
 @NgModule({
