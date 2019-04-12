@@ -4,6 +4,10 @@
     <h5 class="mt-0">{{comment.creator.username}}</h5>
     <p>{{comment.content}}</p>
   </div>
+  <!-- <div *ngIf="comment.status.toLowerCase() === 'pending';then adminTool"></div> -->
+  <ng-template [ngIf]="comment.status.toLowerCase() === 'pending'">
+    <button class="btn btn-secondary" (click)="approveComment()">Approve</button>
+  </ng-template>
   <ng-template [ngIf]="isAdmin || isAuthor">
     <button class="btn btn-secondary">Edit</button>
     <button class="btn btn-secondary" (click)="deleteComment()">Delete</button>

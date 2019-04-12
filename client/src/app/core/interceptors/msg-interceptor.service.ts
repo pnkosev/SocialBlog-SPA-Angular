@@ -17,7 +17,7 @@ export class MsgInterceptorService implements HttpInterceptor {
       .pipe(
         tap((success: HttpEvent<any>) => {
           if (success instanceof HttpResponse) {
-            if (success.body.message || success.body.message !== '') {
+            if (success.body.message) {
               // tslint:disable-next-line: no-string-literal
               this.toastr.success(success.body.message);
             }

@@ -12,6 +12,11 @@
       </li>
     </ng-template>
     <ng-template [ngIf]="isLoggedIn">
+      <ng-template [ngIf]="isAdmin">
+        <li class="nav-item">
+          <a class="navbar-brand" routerLink='/user/admin-tool'>Admin Tool</a>
+        </li>
+      </ng-template>
       <li class="nav-item">
         <a class="navbar-brand" routerLink='/post/create'>Create Post</a>
       </li>

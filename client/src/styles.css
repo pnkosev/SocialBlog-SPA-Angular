@@ -4,3 +4,7 @@ div.wrapper {
   display: flex;
   flex-direction: column;
 }
+
+div.row {
+  padding: 3rem;
+}

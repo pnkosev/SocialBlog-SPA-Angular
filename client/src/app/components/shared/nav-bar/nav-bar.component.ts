@@ -10,6 +10,7 @@ import { UserService } from './../../../core/services/user.service';
 })
 export class NavBarComponent implements DoCheck {
   isLoggedIn: boolean;
+  isAdmin: boolean;
 
   constructor(
     private userService: UserService,
@@ -18,6 +19,7 @@ export class NavBarComponent implements DoCheck {
 
   ngDoCheck() {
     this.isLoggedIn = this.userService.isLoggedIn();
+    this.isAdmin = this.userService.isAdmin();
   }
 
   logout() {

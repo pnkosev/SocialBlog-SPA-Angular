@@ -29,7 +29,6 @@ export class PostDetailsComponent implements OnInit {
     this.post = this.route.snapshot.data.post.post;
     this.isAuthor = this.post.creator._id === this.userService.userId;
     this.isAdmin = this.userService.isAdmin();
-    console.log(this.post.comments);
   }
 
   deletePost(id: string) {

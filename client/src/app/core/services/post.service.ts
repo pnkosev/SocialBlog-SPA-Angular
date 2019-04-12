@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Post } from 'src/app/components/shared/models/post';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+
+import { Post } from 'src/app/components/shared/models/post';
 
 const host = 'http://localhost:9999';
 const baseURL = `${host}/post`;
@@ -22,7 +24,10 @@ export class PostService {
   }
 
   getPendingPosts(): Observable<Post[]> {
-    return this.http.get<Post[]>(`${baseURL}/pending`);
+    return this.http.get<Post[]>(`${baseURL}/pending`).pipe(
+      // tslint:disable-next-line: no-string-literal
+      map((data) => data['posts'])
+    );
   }
 
   getPostDetails(id: string): Observable<Post> {

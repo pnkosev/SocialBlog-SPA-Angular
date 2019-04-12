@@ -1,3 +1,23 @@
-<p>
-  admin-tool works!
-</p>
+<div class="row">
+  <app-post
+    *ngFor="let post of (pendingPosts$ | async)"
+    [post]="post"
+    (deletePostEmitter)="deletePost($event)"
+    (approvePostEmitter)="approvePost($event)">
+  </app-post>
+</div>
+<br>
+<br>
+<div *ngIf="pendingPosts$ | async as pendingPosts">
+  <div *ngIf="pendingPosts.length === 0">Nope</div>
+</div>
+<br>
+<div *ngIf="pendingComments$ | async as pendingComments">
+    <div *ngIf="pendingComments.length === 0">Nope</div>
+</div>
+<app-comment
+  *ngFor="let comment of (pendingComments$ | async)"
+  [comment]="comment"
+  (deleteCommentEmitter)="deleteComment($event)"
+  (approveCommentEmitter)="approveComment($event)">
+</app-comment>
