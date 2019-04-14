@@ -24,7 +24,7 @@ module.exports = {
 			const { content } = req.body;
 
 			const user = await User.findById(req.userId);
-			
+
 			let status = 'Pending';
 
 			let isAdmin;
@@ -35,51 +35,51 @@ module.exports = {
 
 			const comment = new Comment({
 				content,
-                creator: req.userId,
+				creator: req.userId,
 				post: postId,
 				status,
-            });
-            
+			});
+
 			return comment.save()
-			.then(() => {
-				return Promise.all([User.findById(req.userId), Post.findById(postId)]);
-			})
-			.then(([user, post]) => {
-				user.comments.push(comment);
-				post.comments.push(comment);
-				return Promise.all([user.save(), post.save()]);
-			})
-			.then(() => {
-				return Comment
+				.then(() => {
+					return Promise.all([User.findById(req.userId), Post.findById(postId)]);
+				})
+				.then(([user, post]) => {
+					user.comments.push(comment);
+					post.comments.push(comment);
+					return Promise.all([user.save(), post.save()]);
+				})
+				.then(() => {
+					return Comment
 						.findById(comment._id)
 						.populate('creator', 'username _id')
-			})
-			.then((c) => {
-				if (isAdmin) {
-					res
-					.status(201)
-					.json({
-						success: true,
-						message: 'Comment created successfully!',
-						comment: c,
-					})
-				} else {
-					res
-					.status(201)
-					.json({
-						success: true,
-						message: 'Comment created successfully! It will be visible right after the approval of our Admins!',
-						comment: c,
-					})
-				}
-			})
-			.catch((error) => {
-				if (!error.statusCode) {
-					error.statusCode = 500;
-				}
+				})
+				.then((c) => {
+					if (isAdmin) {
+						res
+							.status(201)
+							.json({
+								success: true,
+								message: 'Comment created successfully!',
+								comment: c,
+							})
+					} else {
+						res
+							.status(201)
+							.json({
+								success: true,
+								message: 'Comment created successfully! It will be visible right after the approval of our Admins!',
+								comment: c,
+							})
+					}
+				})
+				.catch((error) => {
+					if (!error.statusCode) {
+						error.statusCode = 500;
+					}
 
-				next(error);
-			});
+					next(error);
+				});
 		}
 	},
 	getCommentById: (req, res, next) => {
@@ -87,12 +87,13 @@ module.exports = {
 
 		Comment
 			.findById(commentId)
+			.populate('creator', 'username _id status')
 			.then((comment) => {
 				res
 					.status(200)
 					.json({
 						success: true,
-						message: 'Comment fetched.',
+						// message: 'Comment fetched.',
 						comment
 					})
 			})
@@ -111,8 +112,8 @@ module.exports = {
 			const commentId = req.params.commentId;
 			const newComment = req.body;
 
-            Comment
-                .findById(commentId)
+			Comment
+				.findById(commentId)
 				.then(async (comment) => {
 					if (!comment) {
 						const error = new Error('Comment not found');
@@ -122,36 +123,44 @@ module.exports = {
 
 					const user = await User.findById(req.userId);
 
-                    if ((comment.creator.toString() !== req.userId) && (user.roles.indexOf('Admin') < 0)) {
-                        const error = new Error('Unauthorized');
-                        error.statusCode = 403;
-                        throw error;
+					let isAdmin = user.roles.indexOf('Admin') >= 0;
+
+					if ((comment.creator.toString() !== req.userId) && (!isAdmin)) {
+						const error = new Error('Unauthorized');
+						error.statusCode = 403;
+						throw error;
 					}
-					
+
 					if (comment.content === newComment.content) {
 						const error = new Error('You didn\'t edit anything...');
-                        error.statusCode = 422;
-                        throw error;
+						error.statusCode = 422;
+						throw error;
 					}
-					
-					if (user.roles.indexOf('Admin') < 0) {
+
+					if (!isAdmin) {
 						comment.status = 'Pending';
 					} else {
 						comment.status = 'Approved';
 					}
-					
+
 					comment.content = newComment.content;
 
-					return comment.save();
-				})
-				.then((comment) => {
-					if (comment) {
-						res.status(200).json({
-							success: true,
-							message: 'Comment updated!',
-							comment
+					return comment.save()
+						.then((comment) => {
+							if (isAdmin) {
+								res.status(200).json({
+									success: true,
+									message: 'Comment edited successfully!',
+									comment
+								})
+							} else {
+								res.status(200).json({
+									success: true,
+									message: 'Comment edited successfully! Needs the approval of our admins though...',
+									comment
+								})
+							}
 						})
-					}
 				})
 				.catch((error) => {
 					if (!error.statusCode) {
@@ -160,12 +169,12 @@ module.exports = {
 					next(error);
 				});
 		}
-    },
-    deleteComment: (req, res, next) => {
+	},
+	deleteComment: (req, res, next) => {
 		const commentId = req.params.commentId;
 
-        Comment
-            .findById(commentId)
+		Comment
+			.findById(commentId)
 			.populate('post')
 			.populate('creator')
 			.then(async (comment) => {
@@ -173,24 +182,24 @@ module.exports = {
 					const error = new Error('Comment not found!');
 					error.statusCode = 404;
 					throw error;
-                }
-                
+				}
+
 				const user = await User.findById(req.userId);
 
 				if ((comment.creator._id.toString() !== req.userId) && (user.roles.indexOf('Admin') < 0)) {
 					const error = new Error('Unauthorized');
 					error.statusCode = 403;
 					throw error;
-                }
-                
-                const post = await Post.findById(comment.post);
-                comment.creator.comments.pull(commentId);
-                post.comments.pull(commentId);
+				}
+
+				const post = await Post.findById(comment.post);
+				comment.creator.comments.pull(commentId);
+				post.comments.pull(commentId);
 
 				return Promise.all([
 					Comment.findByIdAndDelete(commentId),
-                    comment.creator.save(),
-                    post.save(),
+					comment.creator.save(),
+					post.save(),
 				]);
 			})
 			.then(() => {
@@ -207,58 +216,58 @@ module.exports = {
 
 				next(error);
 			});
-    },
-    getPendingComments: (req, res, next) => {
-        Comment
-            .find()
+	},
+	getPendingComments: (req, res, next) => {
+		Comment
+			.find()
 			.where('status', 'Pending')
 			.populate('creator', 'username _id status')
-            .then((comments) => {
-                res
+			.then((comments) => {
+				res
 					.status(200)
 					.json({
 						success: true,
 						// message: 'Comments fetched.',
 						comments
 					})
-            })
-            .catch((error) => {
-                if (!error.statusCode) {
-                    error.statusCode = 500;
-                }
+			})
+			.catch((error) => {
+				if (!error.statusCode) {
+					error.statusCode = 500;
+				}
 
-                next(error);
-            });
-    },
-    approveComment: (req, res, next) => {
-        const commentId = req.params.commentId;
+				next(error);
+			});
+	},
+	approveComment: (req, res, next) => {
+		const commentId = req.params.commentId;
 
-        Comment
-            .findById(commentId)
-            .then((comment) => {
-                if (!comment) {
-                    const error = new Error('Comment not found');
-                    error.statusCode = 404;
-                    throw error;
-                }
-                comment.status = 'Approved';
-                return comment.save();
-            })
-            .then((comment) => {
-                res
-                    .status(200)
-                    .json({
+		Comment
+			.findById(commentId)
+			.then((comment) => {
+				if (!comment) {
+					const error = new Error('Comment not found');
+					error.statusCode = 404;
+					throw error;
+				}
+				comment.status = 'Approved';
+				return comment.save();
+			})
+			.then((comment) => {
+				res
+					.status(200)
+					.json({
 						success: true,
-                        message: 'Comment approved!',
-                        comment
-                })
-            })
-            .catch((error) => {
-                if (!error.statusCode) {
-                    error.statusCode = 500;
-                }
+						message: 'Comment approved!',
+						comment
+					})
+			})
+			.catch((error) => {
+				if (!error.statusCode) {
+					error.statusCode = 500;
+				}
 
-                next(error);
-            });
+				next(error);
+			});
 	}
 }

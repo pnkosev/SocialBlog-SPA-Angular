@@ -208,7 +208,8 @@ module.exports = {
 
 					const user = await User.findById(req.userId);
 
-					if ((p.creator.toString() !== req.userId) && (user.roles.indexOf('Admin') < 0)) {
+					let isAdmin = user.roles.indexOf('Admin') >= 0;
+					if ((p.creator.toString() !== req.userId) && (!isAdmin)) {
 						const error = new Error('Unauthorized');
 						error.statusCode = 403;
 						throw error;
@@ -224,22 +225,28 @@ module.exports = {
 					p.content = content;
 					p.imageUrl = imageUrl;
 
-					if (user.roles.indexOf('Admin') < 0) {
+					if (!isAdmin) {
 						p.status = 'Pending';
 					} else {
 						p.status = 'Approved';
 					}
 
-					return p.save();
-				})
-				.then((post) => {
-					if (post) {
-						res.status(200).json({
-							success: true,
-							message: 'Post updated!',
-							post
+					return p.save()
+						.then((post) => {
+							if (isAdmin) {
+								res.status(200).json({
+									success: true,
+									message: 'Post edited successfully!',
+									post
+								})
+							} else {
+								res.status(200).json({
+									success: true,
+									message: 'Post edited successfully! Needs approval though...',
+									post
+								})
+							}
 						})
-					}
 				})
 				.catch((error) => {
 					if (!error.statusCode) {
