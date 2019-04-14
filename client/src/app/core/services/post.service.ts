@@ -3,10 +3,10 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
+import { environment } from '../../../environments/environment';
 import { Post } from 'src/app/components/shared/models/post';
 
-const host = 'http://localhost:9999';
-const baseURL = `${host}/post`;
+const baseURL = `${environment.ApiURL}/post`;
 
 @Injectable()
 export class PostService {

@@ -38,14 +38,18 @@ export class PostDetailsComponent implements OnInit {
   like() {
     this.postService.likePost(this.post._id).subscribe(data => {
       // tslint:disable-next-line: no-string-literal
-      this.post = data['post'];
+      this.post.likes = data['post'].likes;
+      // tslint:disable-next-line: no-string-literal
+      this.post.hates = data['post'].hates;
     });
   }
 
   hate() {
     this.postService.hatePost(this.post._id).subscribe(data => {
       // tslint:disable-next-line: no-string-literal
-      this.post = data['post'];
+      this.post.likes = data['post'].likes;
+      // tslint:disable-next-line: no-string-literal
+      this.post.hates = data['post'].hates;
     });
   }
 
@@ -55,7 +59,7 @@ export class PostDetailsComponent implements OnInit {
       if (data['comment'].status === 'Approved') {
         // tslint:disable-next-line: no-string-literal
         const comments = this.post.comments.concat(data['comment']);
-        this.post.comments = comments as any;
+        this.post.comments = comments;
       }
     });
   }
@@ -64,7 +68,7 @@ export class PostDetailsComponent implements OnInit {
     this.commentService.deleteComment(id).subscribe(_ => {
       let comments = this.post.comments.slice();
       comments = comments.filter(c => c._id !== id);
-      this.post.comments = comments as any;
+      this.post.comments = comments;
     });
   }
 

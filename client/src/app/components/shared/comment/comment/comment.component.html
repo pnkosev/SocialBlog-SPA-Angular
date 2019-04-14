@@ -9,7 +9,7 @@
     <button class="btn btn-secondary" (click)="approveComment()">Approve</button>
   </ng-template>
   <ng-template [ngIf]="isAdmin || isAuthor">
-    <button class="btn btn-secondary">Edit</button>
+    <button class="btn btn-secondary" routerLink="/comment/edit/{{comment._id}}">Edit</button>
     <button class="btn btn-secondary" (click)="deleteComment()">Delete</button>
   </ng-template>
 </div>

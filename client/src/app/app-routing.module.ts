@@ -33,6 +33,10 @@ const routes: Routes = [
     canLoad: [CanLoadPostService]
   },
   {
+    path: 'comment',
+    loadChildren: './components/comment/comment.module#CommentModule',
+  },
+  {
     path: '**',
     component: NotFoundComponent,
   }

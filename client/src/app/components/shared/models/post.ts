@@ -4,8 +4,8 @@ export interface Post {
     content: string;
     imageUrl: string;
     creator: { _id: string, username: string };
-    likes: [{ _id: string, username: string }];
-    hates: [{ _id: string, username: string }];
-    comments: [{ _id: string, content: string, status: string, creator: { _id: string, username: string } }];
+    likes: Array<{ _id: string, username: string }>;
+    hates: Array<{ _id: string, username: string }>;
+    comments: Array<{ _id: string, content: string, status: string, creator: { _id: string, username: string } }>;
     status: string;
 }

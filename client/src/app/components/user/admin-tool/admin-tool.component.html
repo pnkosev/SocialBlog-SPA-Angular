@@ -1,23 +1,20 @@
-<div class="row">
-  <app-post
-    *ngFor="let post of (pendingPosts$ | async)"
-    [post]="post"
-    (deletePostEmitter)="deletePost($event)"
-    (approvePostEmitter)="approvePost($event)">
-  </app-post>
+<div class="posts">
+  <h2>Pending posts:</h2>
+  <div *ngIf="pendingPosts$ | async as pendingPosts">
+    <div *ngIf="!pendingPosts.length">Nope</div>
+  </div>
+  <div class="row">
+    <app-post *ngFor="let post of (pendingPosts$ | async)" [post]="post" (deletePostEmitter)="deletePost($event)"
+      (approvePostEmitter)="approvePost($event)">
+    </app-post>
+  </div>
 </div>
-<br>
-<br>
-<div *ngIf="pendingPosts$ | async as pendingPosts">
-  <div *ngIf="pendingPosts.length === 0">Nope</div>
+<div class="comments">
+  <h2>Pending comments:</h2>
+  <div *ngIf="pendingComments$ | async as pendingComments">
+    <div *ngIf="!pendingComments.length">Nope</div>
+  </div>
+  <app-comment *ngFor="let comment of (pendingComments$ | async)" [comment]="comment"
+    (deleteCommentEmitter)="deleteComment($event)" (approveCommentEmitter)="approveComment($event)">
+  </app-comment>
 </div>
-<br>
-<div *ngIf="pendingComments$ | async as pendingComments">
-    <div *ngIf="pendingComments.length === 0">Nope</div>
-</div>
-<app-comment
-  *ngFor="let comment of (pendingComments$ | async)"
-  [comment]="comment"
-  (deleteCommentEmitter)="deleteComment($event)"
-  (approveCommentEmitter)="approveComment($event)">
-</app-comment>

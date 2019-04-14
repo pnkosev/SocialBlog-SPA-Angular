@@ -3,8 +3,9 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-const host = 'http://localhost:9999';
-const baseURL = `${host}/user`;
+import { environment } from '../../../environments/environment';
+
+const baseURL = `${environment.ApiURL}/user`;
 
 @Injectable()
 export class UserService {

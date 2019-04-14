@@ -1,9 +1,9 @@
 <div class="col-md-4">
-  <div class="card" style="width: 28.3rem;">
+  <div class="card" style="width: 27.75rem;">
     <img class="card-img-top" src="{{post.imageUrl}}" alt="Card image cap">
     <div class="card-body text-center">
       <h5 class="card-title">{{post.title}}</h5>
-      <p class="card-text">{{post.content | slice:0:25}}...</p>
+      <p class="card-text">{{post.content | slice:0:40}}...</p>
       <div *ngIf="post.status.toLowerCase() === 'pending';then adminTool else details">here is ignored</div>
       <ng-template #adminTool>
         <button class="btn btn-secondary" (click)="approvePost()">Approve</button>

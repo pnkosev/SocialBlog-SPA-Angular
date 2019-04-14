@@ -6,6 +6,7 @@ import { GetAllPostsResolver } from './resolvers/get-all-posts.resolver';
 import { UserService } from './services/user.service';
 import { PostService } from './services/post.service';
 import { CommentService } from './services/comment.service';
+import { GetCommentResolver } from './resolvers/get-comment.resolver';
 
 @NgModule({
   declarations: [],
@@ -28,7 +29,8 @@ export class CoreModule {
         UserService,
         PostService,
         CommentService,
-        GetAllPostsResolver
+        GetAllPostsResolver,
+        GetCommentResolver,
       ]
     };
   }

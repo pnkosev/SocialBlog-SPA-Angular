@@ -6,6 +6,7 @@ import { RegisterComponent } from './register/register.component';
 import { ProfileComponent } from './profile/profile.component';
 import { LoginComponent } from './login/login.component';
 
+import { RoleGuardService } from './../../core/guards/role-guard.service';
 import { GetAllPostsResolver } from '../../core/resolvers/get-all-posts.resolver';
 
 
@@ -34,7 +35,10 @@ const routes: Routes = [
   {
     path: 'admin-tool',
     component: AdminToolComponent,
-    canActivate: []
+    canActivate: [RoleGuardService],
+    data: {
+      expectedRole: 'admin'
+    }
   },
 ];
 

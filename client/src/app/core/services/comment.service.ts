@@ -3,10 +3,10 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
+import { environment } from '../../../environments/environment';
 import { Comment } from './../../components/shared/models/comment';
 
-const host = 'http://localhost:9999';
-const baseURL = `${host}/comment`;
+const baseURL = `${environment.ApiURL}/comment`;
 
 @Injectable()
 export class CommentService {

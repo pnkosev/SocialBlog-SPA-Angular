@@ -1,0 +1,19 @@
+.row {
+    margin: 0;
+}
+
+.posts > .row {
+    border-bottom: 2px solid black;
+}
+
+.posts > h2 {
+    text-decoration: underline;
+}
+
+.comments {
+    margin-top: 5rem;
+}
+
+.comments > h2 {
+    text-decoration: underline;
+}

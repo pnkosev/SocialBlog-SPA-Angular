@@ -14,6 +14,7 @@ import { MsgInterceptorService } from './core/interceptors/msg-interceptor.servi
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
+import { MaterialModule } from './material/material.module';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { HomeComponent } from './components/home/home.component';
     BrowserModule,
     BrowserAnimationsModule,
     SharedModule,
+    MaterialModule,
     CoreModule.forRoot(),
     ToastrModule.forRoot({
       newestOnTop: false,
@@ -40,7 +42,7 @@ import { HomeComponent } from './components/home/home.component';
       provide: HTTP_INTERCEPTORS,
       useClass: MsgInterceptorService,
       multi: true,
-    }
+    },
   ],
   bootstrap: [AppComponent]
 })

@@ -6,6 +6,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { PostDetailsComponent } from './post-details/post-details.component';
+import { RoleGuardService } from 'src/app/core/guards/role-guard.service';
 
 const routes: Routes = [
   {
@@ -29,6 +30,10 @@ const routes: Routes = [
     component: PostEditComponent,
     resolve: {
       post: GetAllPostsResolver
+    },
+    canActivate: [RoleGuardService],
+    data: {
+      expectedRole: 'admin,author'
     }
   },
 ];
