@@ -19,14 +19,14 @@ function validatePost(req, res) {
 
 module.exports = {
 	getApprovedPosts: (req, res, next) => {
-		let limit = Math.abs(req.query.limit) || 6;
-		let page = (Math.abs(req.query.page) || 1) - 1;
+		// let limit = Math.abs(req.query.limit) || 6;
+		// let page = (Math.abs(req.query.page) || 1) - 1;
 		Post
 			.find()
 			.where('status', 'Approved')
 			.populate('creator', 'username _id')
-			.limit(limit)
-			.skip(limit * page)
+			// .limit(limit)
+			// .skip(limit * page)
 			.then((posts) => {
 				res
 					.status(200)
