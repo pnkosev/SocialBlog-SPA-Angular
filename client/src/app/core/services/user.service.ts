@@ -22,8 +22,8 @@ export class UserService {
     return this.http.post(`${baseURL}/login`, payload);
   }
 
-  logout(): Observable<object> {
-    return this.http.get(`${baseURL}/logout`);
+  logout() {
+    localStorage.clear();
   }
 
   get token() {

@@ -37,7 +37,8 @@
       <app-comment-create (submitCommentEmitter)="postComment($event)"></app-comment-create>
 
       <!-- Single Comment -->
-      <app-comment *ngFor="let comment of post.comments" [comment]="comment" (deleteCommentEmitter)="deleteComment($event)"></app-comment>
+      <app-comment *ngFor="let comment of post.comments" [comment]="comment"
+        (deleteCommentEmitter)="deleteComment($event)"></app-comment>
 
     </div>
 
@@ -58,27 +59,113 @@
                 </div> -->
 
       <!-- Categories Widget -->
-      <div class="card my-4">
+      <div class="row">
+          <div class="col-lg-6 text-center">
+            <button class="btn btn-secondary" (click)="like()" mat-raised-button color="primary">
+              <i class="material-icons">thumb_up</i>
+            </button>
+            <br>
+            <br>
+            <i class="material-icons heart" matBadge="{{post.likes.length}}">
+              favorite
+            </i>
+          </div>
+          <div class="col-lg-6 text-center">
+            <button class="btn btn-secondary" (click)="hate()" mat-raised-button color="primary">
+              <i class="material-icons">thumb_down</i>
+            </button>
+            <br>
+            <br>
+            <!-- <i class="fas fa-heart-broken fa-2x" matBadge="{{post.hates.length}}"></i> -->
+            <i class="fas fa-hand-middle-finger fa-pn" matBadge="{{post.hates.length}}" matBadgeColor="warn"></i>
+            <!-- <mat-icon matBadge="15" matBadgeColor="warn">favorite</mat-icon> -->
+            <!-- <i class="material-icons heart" matBadge="{{post.hates.length}}">
+              heart-off
+            </i> -->
+          </div>
+        </div>
+      <!-- <div class="card my-4">
         <h5 class="card-header">Likes/Hates</h5>
         <div class="card-body">
           <div class="row">
             <div class="col-lg-6 text-center">
-              <button class="btn btn-secondary" (click)="like()">Like</button>
-              <p class="text-center likes">{{post.likes.length}}</p>
+              <button class="btn btn-secondary" (click)="like()" mat-raised-button color="primary">
+                <i class="material-icons">thumb_up</i>
+              </button>
+              <br>
+              <br>
+              <i class="material-icons heart" matBadge="{{post.likes.length}}">
+                favorite
+              </i>
             </div>
             <div class="col-lg-6 text-center">
-              <button class="btn btn-secondary" (click)="hate()">Hate</button>
-              <p class="text-center hates">{{post.hates.length}}</p>
+              <button class="btn btn-secondary" (click)="hate()" mat-raised-button color="primary">
+                <i class="material-icons">thumb_down</i>
+              </button>
+              <br>
+              <br>
+              <i class="fas fa-hand-middle-finger fa-pn" matBadge="{{post.hates.length}}" matBadgeColor="warn"></i>
             </div>
           </div>
         </div>
+      </div> -->
+
+      <div>
+          <mat-accordion>
+              <mat-expansion-panel [disabled]="!post.likes.length" (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                <mat-expansion-panel-header>
+                  <mat-panel-title class="likers">
+                    LIKERS:
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+                <ul class="list-unstyled mb-0">
+                  <li *ngFor="let like of post.likes" class="users">{{like.username}}</li>
+                </ul>
+              </mat-expansion-panel>
+            </mat-accordion>
+            <mat-accordion>
+              <mat-expansion-panel [disabled]="!post.hates.length" (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                <mat-expansion-panel-header>
+                  <mat-panel-title class="haters">
+                    HATERS:
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+                <ul class="list-unstyled mb-0">
+                  <li *ngFor="let hate of post.hates" class="users">{{hate.username}}</li>
+                </ul>
+              </mat-expansion-panel>
+            </mat-accordion>
       </div>
 
       <!-- Side Widget -->
-      <div class="card my-4">
+      <!-- <div class="card my-4">
         <h5 class="card-header">Likers and Haters</h5>
         <div class="card-body">
           <div class="row">
+            <mat-accordion>
+              <mat-expansion-panel [disabled]="!post.likes.length" (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+                    LIKERS:
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+                <ul class="list-unstyled mb-0">
+                  <li *ngFor="let like of post.likes">{{like.username}}</li>
+                </ul>
+              </mat-expansion-panel>
+            </mat-accordion>
+            <mat-accordion>
+              <mat-expansion-panel [disabled]="!post.hates.length" (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+                    HATERS:
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+                <ul class="list-unstyled mb-0">
+                  <li *ngFor="let hate of post.hates">{{hate.username}}</li>
+                </ul>
+              </mat-expansion-panel>
+            </mat-accordion>
             <div class="col-lg-6 text-center">
               <p class="likers">LIKERS:</p>
               <div *ngIf="post.likes.length;else nuffin">
@@ -102,7 +189,7 @@
               <ng-template #nuffin>Nobody... for now...</ng-template>
             </div>
           </div>
-        </div>
+        </div> -->
 
       </div>
 

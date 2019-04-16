@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { CanLoadUserService } from './core/guards/can-load-user.service';
 import { CanLoadPostService } from './core/guards/can-load-post.service';
 
 import { HomeComponent } from './components/home/home.component';
@@ -25,7 +24,6 @@ const routes: Routes = [
   {
     path: 'user',
     loadChildren: './components/user/user.module#UserModule',
-    canLoad: [CanLoadUserService]
   },
   {
     path: 'post',

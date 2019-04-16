@@ -1,5 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-comment-create',
@@ -7,8 +7,8 @@ import { FormBuilder, Validators } from '@angular/forms';
   styleUrls: ['./comment-create.component.css']
 })
 export class CommentCreateComponent implements OnInit {
-  form;
   @Output() submitCommentEmitter = new EventEmitter();
+  form: FormGroup;
 
   constructor(
     private fb: FormBuilder,
@@ -20,7 +20,7 @@ export class CommentCreateComponent implements OnInit {
 
   buildForm() {
     this.form = this.fb.group({
-      content: ['', [Validators.required, Validators.pattern(/^[a-zA-Z0-9_,.:;"' ]{10,}$/)]],
+      content: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(100)]],
     });
   }
 

@@ -3,8 +3,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 
-import { MaterialModule } from './../../material/material.module';
-
+import { MaterialModule } from 'src/app/material/material.module';
 import { CommentEditComponent } from './comment-edit/comment-edit.component';
 
 @NgModule({
@@ -14,8 +13,8 @@ import { CommentEditComponent } from './comment-edit/comment-edit.component';
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    MaterialModule,
     CommentRoutingModule,
+    MaterialModule,
   ]
 })
 export class CommentModule { }

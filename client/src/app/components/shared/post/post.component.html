@@ -7,11 +7,11 @@
       <div *ngIf="post.status.toLowerCase() === 'pending';then adminTool else details">here is ignored</div>
       <ng-template #adminTool>
         <button class="btn btn-secondary" (click)="approvePost()">Approve</button>
-        <button routerLink="/post/edit/{{post._id}}" class="btn btn-secondary">Edit</button>
+        <button routerLink="/post/edit/{{post._id}}" routerLinkActive="active" class="btn btn-secondary">Edit</button>
         <button class="btn btn-secondary" (click)="deletePost()">Delete</button>
       </ng-template>
       <ng-template #details>
-        <a routerLink="/post/details/{{post._id}}" class="btn btn-primary">Details</a>
+        <a routerLink="/post/details/{{post._id}}" routerLinkActive="active" class="btn btn-primary">Details</a>
       </ng-template>
     </div>
   </div>

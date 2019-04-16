@@ -1,0 +1,10 @@
+<!--Scroll to top-->
+<div class="scroll-to-top" [ngClass]="{'show-scrollTop': windowScrolled}">
+  <button
+    mat-mini-fab
+    color="primary"
+    (click)="scrollToTop()"
+  >
+    <i class="material-icons">keyboard_arrow_up</i>
+  </button>
+</div>

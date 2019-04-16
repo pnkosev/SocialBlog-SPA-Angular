@@ -3,17 +3,17 @@
     <div class="col-lg-4"></div>
     <div class="col-lg-4">
       <h1>Registration Form</h1>
-      <form (ngSubmit)="submitRegister()" [formGroup]="form">
+      <form (submit)="submitRegister()" [formGroup]="form">
         <div class="form-group input-group">
           <div class="input-group-prepend">
             <span class="input-group-text"> <i class="fa fa-user"></i> </span>
           </div>
           <input class="form-control" placeholder="User" formControlName="username">
         </div>
-        <div class="alert alert-danger" *ngIf="f?.username.touched && f?.username.errors?.required">
+        <div class="alert alert-danger" *ngIf="!!f.username.touched && !!f.username.errors?.required">
           This field is required!
         </div>
-        <div class="alert alert-danger" *ngIf="f.username.touched && f.username.errors?.pattern">
+        <div class="alert alert-danger" *ngIf="!!f.username.touched && !!f.username.errors?.pattern">
           Please provide a valid username (3-16 symbols)!
         </div>
         <div class="form-group input-group">
@@ -22,10 +22,10 @@
           </div>
           <input class="form-control" placeholder="Email Address" type="email" formControlName="email">
         </div>
-        <div class="alert alert-danger" *ngIf="f?.email.touched && f?.email.errors?.required">
+        <div class="alert alert-danger" *ngIf="!!f.email.touched && !!f.email.errors?.required">
           This field is required!
         </div>
-        <div class="alert alert-danger" *ngIf="f?.email.errors?.email">
+        <div class="alert alert-danger" *ngIf="!!f.email.errors?.email">
           You should provide a valid email adress!
         </div>
         <div formGroupName="passwords">
@@ -36,11 +36,11 @@
             <input class="form-control" placeholder="Create password" type="password" formControlName="password">
           </div>
           <div class="alert alert-danger"
-            *ngIf="f?.passwords.controls.password?.touched && f?.passwords.controls.password.errors?.required">
+            *ngIf="!!f.passwords.controls.password.touched && !!f.passwords.controls.password.errors?.required">
             Please provide a password!
           </div>
           <div class="alert alert-danger"
-            *ngIf="f?.passwords.controls.password?.touched && f?.passwords.controls.password?.errors?.pattern">
+            *ngIf="!!f.passwords.controls.password.touched && !!f.passwords.controls.password.errors?.pattern">
             Password must be between 3 and 16 symbols(only letters and digits)!
           </div>
           <div class="form-group input-group">
@@ -50,22 +50,22 @@
             <input class="form-control" placeholder="Repeat password" type="password" formControlName="repeatPass">
           </div>
           <div class="alert alert-danger"
-            *ngIf="f?.passwords?.controls.repeatPass?.touched && f?.passwords?.controls.repeatPass?.errors?.required">
+            *ngIf="!!f.passwords.controls.repeatPass.touched && !!f.passwords.controls.repeatPass.errors?.required">
             Please confirm your password!
           </div>
           <div class="alert alert-danger"
-            *ngIf="f?.passwords.controls.repeatPass?.touched && f?.passwords.controls.repeatPass?.errors?.pattern">
+            *ngIf="!!f.passwords.controls.repeatPass.touched && !!f.passwords.controls.repeatPass.errors?.pattern">
             Password must be between 3 and 16 symbols(only letters and digits)!
           </div>
         </div>
         <div class="alert alert-danger"
-          *ngIf="f?.passwords?.controls.repeatPass?.dirty && f?.passwords.errors?.invalidMatch">
+          *ngIf="!!f.passwords.controls.repeatPass?.dirty && !!f.passwords.errors?.invalidMatch">
           Passwords must match!
         </div>
         <div class="form-group">
           <button type="submit" class="btn btn-primary btn-block" [disabled]="form.invalid">Create Account</button>
         </div>
-        <p class="text-center">Have an account? <a routerLink="/user/login">Log In</a> </p>
+        <p class="text-center">Have an account? <a routerLink="/user/login" routerLinkActive="active">Log In</a> </p>
       </form>
     </div>
     <div class="col-lg-4"></div>

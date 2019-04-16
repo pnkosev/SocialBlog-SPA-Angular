@@ -10,6 +10,8 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { PostComponent } from './post/post.component';
 import { CommentCreateComponent } from './comment/comment-create/comment-create.component';
 import { CommentComponent } from './comment/comment/comment.component';
+import { ScrollToTopComponent } from './scroll-to-top/scroll-to-top.component';
+import { MaterialModule } from 'src/app/material/material.module';
 
 @NgModule({
   declarations: [
@@ -20,11 +22,13 @@ import { CommentComponent } from './comment/comment/comment.component';
     PostComponent,
     CommentCreateComponent,
     CommentComponent,
+    ScrollToTopComponent,
   ],
   imports: [
     CommonModule,
     RouterModule,
     ReactiveFormsModule,
+    MaterialModule,
   ],
   exports: [
     HeaderComponent,
@@ -34,6 +38,7 @@ import { CommentComponent } from './comment/comment/comment.component';
     PostComponent,
     CommentCreateComponent,
     CommentComponent,
+    ScrollToTopComponent,
   ]
 })
 export class SharedModule { }

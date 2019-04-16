@@ -1,35 +1,43 @@
-<nav class="navbar-expand-md navbar-dark fixed-top bg-dark">
-  <ul class="nav justify-content-end">
-    <li class="nav-item">
-      <a class="navbar-brand" routerLink='/home'>Home</a>
-    </li>
-    <ng-template [ngIf]="!isLoggedIn">
-      <li class="nav-item">
-        <a class="navbar-brand" routerLink='/user/register'>Register</a>
-      </li>
-      <li class="nav-item">
-        <a class="navbar-brand" routerLink='/user/login'>Login</a>
-      </li>
-    </ng-template>
-    <ng-template [ngIf]="isLoggedIn">
-      <ng-template [ngIf]="isAdmin">
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <span><a class="navbar-brand" routerLink='/home'>Social Blog</a></span>
+    <div fxHide.gt-xs>
+      <button mat-icon-button>
+        <mat-icon>menu</mat-icon>
+      </button>
+    </div>
+    <ul fxFlex fxLayout="row wrap" fxLayoutAlign="flex-end center" fxLayoutGap="20px" fxHide.xs
+      class="navigation-links">
+      <ng-template [ngIf]="!isLoggedIn">
         <li class="nav-item">
-          <a class="navbar-brand" routerLink='/user/admin-tool'>Admin Tool</a>
+          <a class="navbar-brand" routerLink='/user/register' routerLinkActive="active">Register</a>
+        </li>
+        <li class="nav-item">
+          <a class="navbar-brand" routerLink='/user/login' routerLinkActive="active">Login</a>
         </li>
       </ng-template>
-      <li class="nav-item">
-        <a class="navbar-brand" routerLink='/post/create'>Create Post</a>
-      </li>
-      <li class="nav-item">
-        <a class="navbar-brand" routerLink='/user/profile'>Profile</a>
-      </li>
-      <li class="nav-item">
-        <a class="navbar-brand" routerLink='/user/logout' (click)="logout()">Logout</a>
-      </li>
-    </ng-template>
-  </ul>
-</nav>
-
+      <ng-template [ngIf]="isLoggedIn">
+        <ng-template [ngIf]="isAdmin">
+          <li class="nav-item">
+            <a class="navbar-brand" routerLink='/user/admin-tool' routerLinkActive="active">Admin Tool</a>
+          </li>
+        </ng-template>
+        <li class="nav-item">
+          <a class="navbar-brand" routerLink='/post/create' routerLinkActive="active">Create Post</a>
+        </li>
+        <li class="nav-item">
+          <a class="navbar-brand" routerLink='/user/profile' routerLinkActive="active">Profile</a>
+        </li>
+        <li class="nav-item">
+          <a class="navbar-brand" routerLink="" (click)="logout()">Logout</a>
+        </li>
+        <li class="nav-item welcome-msg">
+          Welcome, {{username}}!
+        </li>
+      </ng-template>
+    </ul>
+  </mat-toolbar-row>
+</mat-toolbar>
 
 
 <!-- <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">

@@ -16,6 +16,8 @@ import {
   MatPaginatorModule,
   MatSortModule
 } from '@angular/material';
+import { MatBadgeModule } from '@angular/material/badge';
+import { MatExpansionModule } from '@angular/material/expansion';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
@@ -35,7 +37,9 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     MatTableModule,
     MatTabsModule,
     MatPaginatorModule,
-    MatSortModule
+    MatSortModule,
+    MatBadgeModule,
+    MatExpansionModule,
   ],
   exports: [
     FlexLayoutModule,
@@ -53,7 +57,9 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     MatTableModule,
     MatTabsModule,
     MatPaginatorModule,
-    MatSortModule
+    MatSortModule,
+    MatBadgeModule,
+    MatExpansionModule,
   ]
 })
 export class MaterialModule { }

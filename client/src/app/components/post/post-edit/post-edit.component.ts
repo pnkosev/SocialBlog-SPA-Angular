@@ -1,8 +1,9 @@
-import { UserService } from './../../../core/services/user.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Location } from '@angular/common';
+import { Subscription } from 'rxjs';
 
+import { UserService } from './../../../core/services/user.service';
 import { PostService } from './../../../core/services/post.service';
 import { Post } from '../../shared/models/post';
 
@@ -11,8 +12,9 @@ import { Post } from '../../shared/models/post';
   templateUrl: './post-edit.component.html',
   styleUrls: ['./post-edit.component.css']
 })
-export class PostEditComponent implements OnInit {
+export class PostEditComponent implements OnInit, OnDestroy {
   post: Post;
+  editPostSub: Subscription;
 
   constructor(
     private userService: UserService,
@@ -27,9 +29,15 @@ export class PostEditComponent implements OnInit {
   }
 
   editPost(newPost: Post) {
-    this.postService.editPost(this.post._id, newPost).subscribe(_ =>
+    this.editPostSub = this.postService.editPost(this.post._id, newPost).subscribe(_ =>
       this.userService.isAdmin() ? this.location.back() : this.router.navigate(['home'])
     );
+  }
+
+  ngOnDestroy() {
+    if (this.editPostSub) {
+      this.editPostSub.unsubscribe();
+    }
   }
 
 }

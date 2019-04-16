@@ -2,16 +2,14 @@
   <mat-form-field appearance="outline">
     <mat-label>Edit your comment</mat-label>
     <textarea formControlName="content" matInput placeholder="Type your comment" rows="7">
-        </textarea>
+    </textarea>
     <mat-icon matSuffix>question_answer</mat-icon>
-    <!-- <mat-error *ngIf="questionForm.get('text').hasError('required')">Please ask a question</mat-error>
-      <mat-error *ngIf="questionForm.get('text').hasError('minlength')">Question must be at least 10 symbols long -->
-    <!-- </mat-error> -->
-    <!-- <mat-error *ngIf="questionForm.get('text').hasError('maxlength')">Question must not be more than 70 symbols long -->
-    <!-- </mat-error> -->
+    <mat-error *ngIf="form.get('content').hasError('required')">Please leave a comment</mat-error>
+    <mat-error *ngIf="form.get('content').hasError('minlength')">Comment must be at least 10 symbols long</mat-error>
+    <mat-error *ngIf="form.get('content').hasError('maxlength')">Comment must not exceed 100 symbols</mat-error>
   </mat-form-field>
   <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="2rem">
-    <button mat-fab color="primary" (click)="goBack()">Back</button>
-    <button [disabled]="form.invalid" type="submit" mat-fab color="primary">Edit</button>
+    <a mat-fab color="primary" (click)="goBack()" routerLinkActive="active">Back</a>
+    <button [disabled]="form.invalid || !form.dirty" type="submit" mat-fab color="primary">Edit</button>
   </div>
 </form>

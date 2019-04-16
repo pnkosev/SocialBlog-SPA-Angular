@@ -1,5 +1,5 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
-import { FormBuilder, Validators, FormControl } from '@angular/forms';
+import { FormBuilder, Validators, FormControl, FormGroup } from '@angular/forms';
 
 import { Post } from 'src/app/components/shared/models/post';
 
@@ -9,8 +9,8 @@ import { Post } from 'src/app/components/shared/models/post';
   styleUrls: ['./post-form.component.css']
 })
 export class PostFormComponent implements OnInit {
-  form;
-  btn;
+  form: FormGroup;
+  btn: string;
   @Input() post: Post;
   @Output() sumbitFormEmitter = new EventEmitter();
 
@@ -28,8 +28,8 @@ export class PostFormComponent implements OnInit {
     const imageUrl = this.post ? this.post.imageUrl : '';
     this.btn = this.post ? 'Edit' : 'Create';
     this.form = this.fb.group({
-      title: [title, [Validators.required, Validators.pattern(/^[a-zA-Z0-9_ ]{5,}$/)]],
-      content: [content, [Validators.required, Validators.pattern(/^[a-zA-Z0-9_,.:;"' ]{50,}$/)]],
+      title: [title, [Validators.required, Validators.minLength(5)]],
+      content: [content, [Validators.required, Validators.minLength(50)]],
       imageUrl: [imageUrl, [Validators.required, this.validateImageUrl]],
     });
   }

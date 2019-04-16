@@ -4,6 +4,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import { UserRoutingModule } from './user-routing.module';
 import { SharedModule } from '../shared/shared.module';
+import { MaterialModule } from 'src/app/material/material.module';
 
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
@@ -20,6 +21,7 @@ import { AdminToolComponent } from './admin-tool/admin-tool.component';
   imports: [
     CommonModule,
     SharedModule,
+    MaterialModule,
     ReactiveFormsModule,
     UserRoutingModule,
   ]

@@ -11,3 +11,8 @@ div.wrapper {
 div.row {
   padding: 3rem;
 }
+
+button:disabled {
+  cursor: not-allowed;
+  pointer-events: all !important;
+}

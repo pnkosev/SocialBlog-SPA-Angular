@@ -1,7 +1,8 @@
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Subscription } from 'rxjs';
 
 import { UserService } from 'src/app/core/services/user.service';
 import { CommentService } from './../../../core/services/comment.service';
@@ -12,10 +13,11 @@ import { Comment } from './../../shared/models/comment';
   templateUrl: './comment-edit.component.html',
   styleUrls: ['./comment-edit.component.css']
 })
-export class CommentEditComponent implements OnInit {
+export class CommentEditComponent implements OnInit, OnDestroy {
   form: FormGroup;
   comment: Comment;
   isAdmin: boolean;
+  editCommentSub: Subscription;
 
   constructor(
     private commentService: CommentService,
@@ -33,7 +35,7 @@ export class CommentEditComponent implements OnInit {
 
   buildForm() {
     this.form = this.fb.group({
-      content: [this.comment.content, [Validators.required, Validators.minLength(10)]]
+      content: [this.comment.content, [Validators.required, Validators.minLength(10), Validators.maxLength(100)]]
     });
   }
 
@@ -48,8 +50,13 @@ export class CommentEditComponent implements OnInit {
 
   editComment() {
     if (this.form.valid) {
-      this.commentService.editComment(this.comment._id, this.form.value).subscribe();
-      this.location.back();
+      this.editCommentSub = this.commentService.editComment(this.comment._id, this.form.value).subscribe(_ => this.location.back());
+    }
+  }
+
+  ngOnDestroy() {
+    if (this.editCommentSub) {
+      this.editCommentSub.unsubscribe();
     }
   }
 }

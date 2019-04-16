@@ -3,10 +3,12 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 
-import { PostListComponent } from './post-list/post-list.component';
-import { PostDetailsComponent } from './post-details/post-details.component';
 import { PostRoutingModule } from './post-routing.module';
 import { SharedModule } from '../shared/shared.module';
+import { MaterialModule } from 'src/app/material/material.module';
+
+import { PostListComponent } from './post-list/post-list.component';
+import { PostDetailsComponent } from './post-details/post-details.component';
 import { PostEditComponent } from './post-edit/post-edit.component';
 import { PostCreateComponent } from './post-create/post-create.component';
 import { PostFormComponent } from './post-form/post-form.component';
@@ -24,7 +26,8 @@ import { PostFormComponent } from './post-form/post-form.component';
     ReactiveFormsModule,
     RouterModule,
     SharedModule,
-    PostRoutingModule
+    PostRoutingModule,
+    MaterialModule,
   ]
 })
 export class PostModule { }

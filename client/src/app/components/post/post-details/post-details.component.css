@@ -1,9 +1,32 @@
 .likes,
 .hates {
-    margin: 0;
+  margin: 0;
 }
 
 .likers,
 .haters {
-    text-decoration: underline;
+  text-decoration: underline;
 }
+
+div.col-md-4 {
+  margin-top: 10rem;
+}
+
+.users {
+    padding-bottom: 0.5rem;
+}
+
+.heart {
+  color: red;
+}
+
+.fa-hand-middle-finger {
+  color: black;
+}
+
+
+.fa-pn {
+  font-size: 1.70em;
+}
+
+
