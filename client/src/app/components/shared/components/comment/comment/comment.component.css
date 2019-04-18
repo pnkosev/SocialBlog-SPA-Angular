@@ -1,0 +1,63 @@
+article {
+  display: flex;
+  flex-direction: column;
+}
+
+div.comment {
+  margin-bottom: 0 !important;
+}
+
+span {
+  color: black;
+  font-size: 1.2rem;
+}
+
+.mt-0 {
+  font-size: 1.5rem;
+  text-transform: uppercase;
+}
+
+i {
+  margin-right: 0.5rem;
+  margin-top: 0.25rem;
+  color: rgb(120, 107, 235);
+}
+
+.btns-holder {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+a:focus,
+a:hover,
+button:focus,
+button:hover {
+  background: lavender;
+  color: rgb(150, 0, 150);
+}
+
+button {
+  margin-right: 2rem;
+}
+
+.delete:hover,
+.delete:focus {
+  background-color: black;
+  color: red;
+}
+
+p {
+  font-family: Poor Richard;
+  font-size: 1.1rem;
+  color: rgb(104, 9, 104)
+}
+
+blockquote {
+  font-family: "Georgia", sans-serif;
+  color: black;
+  border-left: 4px solid rgb(221, 221, 221);
+  font-style: italic;
+  margin: 0;
+  padding: 1rem 2rem;
+}

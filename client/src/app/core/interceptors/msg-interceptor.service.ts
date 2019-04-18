@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { tap, catchError } from 'rxjs/operators';
 import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -10,6 +11,7 @@ import { ToastrService } from 'ngx-toastr';
 export class MsgInterceptorService implements HttpInterceptor {
   constructor(
     private toastr: ToastrService,
+    private router: Router,
   ) { }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
@@ -23,6 +25,9 @@ export class MsgInterceptorService implements HttpInterceptor {
             }
           }
         }), catchError((err: HttpErrorResponse) => {
+          if (err.status === 401) {
+            this.router.navigate(['/user/login']);
+          }
           this.toastr.error(err.error.message);
           if (err.error.errors) {
             const errors = (err.error.errors).reduce((obj, key) => {

@@ -1,0 +1,19 @@
+<div class="media mb-4 comment">
+  <i class="material-icons"> account_circle</i>
+  <article>
+    <div class="media-body">
+      <span class="mt-0">{{comment.creator.username}} </span><span>says:</span>
+      <blockquote>{{comment.content}}</blockquote>
+    </div>
+  </article>
+</div>
+<div class="btns-holder">
+  <ng-template [ngIf]="comment.status.toLowerCase() === 'pending'">
+    <button mat-fab color="primary" (click)="approveComment()">Approve</button>
+  </ng-template>
+  <ng-template [ngIf]="isAdmin || isAuthor">
+    <button mat-fab color="primary" routerLink="/comment/edit/{{comment._id}}">Edit</button>
+    <button mat-fab color="warn" class="delete" (click)="openDialog()">Delete</button>
+  </ng-template>
+</div>
+<hr>

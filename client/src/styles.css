@@ -12,6 +12,11 @@ div.row {
   padding: 3rem;
 }
 
+button:hover,
+a:hover {
+  cursor: pointer;
+}
+
 button:disabled {
   cursor: not-allowed;
   pointer-events: all !important;

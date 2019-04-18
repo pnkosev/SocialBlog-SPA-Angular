@@ -1,11 +1,11 @@
 <mat-toolbar color="primary">
   <mat-toolbar-row>
-    <span><a class="navbar-brand" routerLink='/home'>Social Blog</a></span>
-    <div fxHide.gt-xs>
+    <div fxHide.gt-xs class="text-right">
       <button mat-icon-button>
         <mat-icon>menu</mat-icon>
       </button>
     </div>
+    <span><a class="navbar-brand" routerLink='/home'>Social Blog</a></span>
     <ul fxFlex fxLayout="row wrap" fxLayoutAlign="flex-end center" fxLayoutGap="20px" fxHide.xs
       class="navigation-links">
       <ng-template [ngIf]="!isLoggedIn">

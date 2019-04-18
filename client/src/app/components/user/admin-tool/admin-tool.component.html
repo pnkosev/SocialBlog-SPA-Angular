@@ -10,7 +10,7 @@
   </div>
 </div>
 <div class="comments">
-  <h2>Pending comments:</h2>
+  <h2 class="comment-title">Pending comments:</h2>
   <div *ngIf="pendingComments$ | async as pendingComments">
     <div *ngIf="!pendingComments.length">Nope</div>
   </div>

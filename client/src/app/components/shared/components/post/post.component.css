@@ -1,0 +1,42 @@
+.card {
+  margin-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+  min-width: 15rem;
+  max-width: 27.5rem;
+  width: 27.5vw;
+  background: rgb(255, 255, 255);
+  box-shadow: 0 0 2rem 0.5rem rgba(0, 0, 0, 0.2);
+  border-radius: 0.3rem;
+  transition: box-shadow 0.3s ease;
+}
+
+.card:hover {
+  box-shadow: 0 0 2.5rem 1.2rem rgba(89, 18, 221, 0.25);
+}
+
+mat-card-actions {
+  margin-top: auto;
+}
+
+.title {
+  text-align: center !important;
+  font-weight: bold;
+}
+
+.author {
+  display: block;
+  text-align: right;
+  font-style: italic;
+}
+
+button:focus,
+button:hover {
+  background: lavender;
+  color: rgb(150, 0, 150);
+  box-shadow: 0 0 1rem 0.3rem rgba(224, 40, 215, 0.25);
+}
+
+mat-card-actions {
+  margin-bottom: 0 !important;
+}

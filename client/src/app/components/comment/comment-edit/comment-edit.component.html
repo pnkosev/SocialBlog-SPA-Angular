@@ -1,4 +1,4 @@
-<form (submit)="editComment()" [formGroup]="form" fxLayout="column" fxLayoutAlign="center center">
+<!-- <form (submit)="editComment()" [formGroup]="form" fxLayout="column" fxLayoutAlign="center center">
   <mat-form-field appearance="outline">
     <mat-label>Edit your comment</mat-label>
     <textarea formControlName="content" matInput placeholder="Type your comment" rows="7">
@@ -12,4 +12,5 @@
     <a mat-fab color="primary" (click)="goBack()" routerLinkActive="active">Back</a>
     <button [disabled]="form.invalid || !form.dirty" type="submit" mat-fab color="primary">Edit</button>
   </div>
-</form>
+</form> -->
+<app-comment-form [comment]="comment" (submitFormEmitter)="editComment($event)" (goBackEmitter)="goBack($event)"></app-comment-form>

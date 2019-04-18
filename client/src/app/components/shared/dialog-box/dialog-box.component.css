@@ -1,0 +1,15 @@
+button.cancel {
+  margin-right: 2rem;
+}
+
+.cancel:focus,
+.cancel:hover {
+  background: lavender;
+  color: rgb(150, 0, 150);
+}
+
+.delete:hover,
+.delete:focus {
+  background-color: black;
+  color: red;
+}

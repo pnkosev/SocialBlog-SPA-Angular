@@ -1,10 +1,11 @@
+import { AuthGuardService } from './core/guards/auth-guard.service';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { CanLoadPostService } from './core/guards/can-load-post.service';
 
 import { HomeComponent } from './components/home/home.component';
-import { NotFoundComponent } from './components/shared/not-found/not-found.component';
+import { NotFoundComponent } from './components/shared/components/not-found/not-found.component';
 
 import { GetAllPostsResolver } from './core/resolvers/get-all-posts.resolver';
 
@@ -28,7 +29,8 @@ const routes: Routes = [
   {
     path: 'post',
     loadChildren: './components/post/post.module#PostModule',
-    canLoad: [CanLoadPostService]
+    canLoad: [CanLoadPostService],
+    canActivate: [AuthGuardService]
   },
   {
     path: 'comment',

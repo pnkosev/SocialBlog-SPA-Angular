@@ -17,3 +17,7 @@
 .comments > h2 {
     text-decoration: underline;
 }
+
+.comment-title {
+    margin-bottom: 2rem;
+}

@@ -13,7 +13,7 @@ div.col-md-4 {
 }
 
 .users {
-    padding-bottom: 0.5rem;
+  padding-bottom: 0.5rem;
 }
 
 .heart {
@@ -29,4 +29,30 @@ div.col-md-4 {
   font-size: 1.70em;
 }
 
+a:focus,
+a:hover,
+button:focus,
+button:hover {
+  background: lavender;
+  color: rgb(150, 0, 150);
+}
 
+.edit,
+.delete {
+  margin-right: 2rem;
+}
+
+.delete:hover,
+.delete:focus {
+  background-color: black;
+  color: red;
+}
+
+.lead {
+  color: rgb(104, 9, 104)
+}
+
+.com-num {
+  text-align: right;
+  margin-bottom: 3rem;
+}

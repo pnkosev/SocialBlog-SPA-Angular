@@ -14,9 +14,7 @@ import { Comment } from './../../shared/models/comment';
   styleUrls: ['./comment-edit.component.css']
 })
 export class CommentEditComponent implements OnInit, OnDestroy {
-  form: FormGroup;
   comment: Comment;
-  isAdmin: boolean;
   editCommentSub: Subscription;
 
   constructor(
@@ -29,14 +27,6 @@ export class CommentEditComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.getComment();
-    this.buildForm();
-    this.isAdmin = this.userService.isAdmin();
-  }
-
-  buildForm() {
-    this.form = this.fb.group({
-      content: [this.comment.content, [Validators.required, Validators.minLength(10), Validators.maxLength(100)]]
-    });
   }
 
   getComment() {
@@ -48,10 +38,8 @@ export class CommentEditComponent implements OnInit, OnDestroy {
     this.location.back();
   }
 
-  editComment() {
-    if (this.form.valid) {
-      this.editCommentSub = this.commentService.editComment(this.comment._id, this.form.value).subscribe(_ => this.location.back());
-    }
+  editComment(comment: Comment) {
+    this.editCommentSub = this.commentService.editComment(this.comment._id, comment).subscribe(_ => this.location.back());
   }
 
   ngOnDestroy() {

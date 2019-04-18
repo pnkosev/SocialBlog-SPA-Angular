@@ -1,5 +1,6 @@
 import { ActivatedRoute, Router } from '@angular/router';
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, DoCheck } from '@angular/core';
+import { MatDialog } from '@angular/material';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
@@ -9,6 +10,7 @@ import { CommentService } from './../../../core/services/comment.service';
 
 import { Post } from 'src/app/components/shared/models/post';
 import { Comment } from '../../shared/models/comment';
+import { DialogBoxComponent } from '../../shared/dialog-box/dialog-box.component';
 
 
 @Component({
@@ -16,10 +18,11 @@ import { Comment } from '../../shared/models/comment';
   templateUrl: './post-details.component.html',
   styleUrls: ['./post-details.component.css']
 })
-export class PostDetailsComponent implements OnInit, OnDestroy {
+export class PostDetailsComponent implements OnInit, DoCheck, OnDestroy {
   post: Post;
   isAuthor: boolean;
   isAdmin: boolean;
+  commentNum: string;
   private isAlive$ = new Subject();
 
   constructor(
@@ -28,12 +31,17 @@ export class PostDetailsComponent implements OnInit, OnDestroy {
     private postService: PostService,
     private userService: UserService,
     private commentService: CommentService,
+    public dialog: MatDialog
   ) { }
 
   ngOnInit() {
     this.post = this.route.snapshot.data.post.post;
     this.isAuthor = this.post.creator._id === this.userService.userId;
     this.isAdmin = this.userService.isAdmin();
+  }
+
+  ngDoCheck() {
+    this.commentNum = this.post.comments.length > 1 ? 'comments' : 'comment';
   }
 
   deletePost(id: string) {
@@ -85,6 +93,19 @@ export class PostDetailsComponent implements OnInit, OnDestroy {
         comments = comments.filter(c => c._id !== id);
         this.post.comments = comments;
       });
+  }
+
+  openDialog() {
+    const dialogRef = this.dialog.open(DialogBoxComponent, {
+      width: '300px',
+      data: { name: 'post' }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === 'yes') {
+        this.deletePost(this.post._id);
+      }
+    });
   }
 
   ngOnDestroy() {

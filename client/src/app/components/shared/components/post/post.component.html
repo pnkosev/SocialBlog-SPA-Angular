@@ -1,0 +1,40 @@
+<!-- <div class="col-md-4">
+  <div class="card" style="width: 27.75rem;">
+    <img class="card-img-top" src="{{post.imageUrl}}" alt="Card image cap">
+    <div class="card-body text-center">
+      <h5 class="card-title">{{post.title}}</h5>
+      <p class="card-text">{{post.content | slice:0:40}}...</p>
+      <div *ngIf="post.status.toLowerCase() === 'pending';then adminTool else details">here is ignored</div>
+      <ng-template #adminTool>
+        <button class="btn btn-secondary" (click)="approvePost()">Approve</button>
+        <button routerLink="/post/edit/{{post._id}}" routerLinkActive="active" class="btn btn-secondary">Edit</button>
+        <button class="btn btn-secondary" (click)="deletePost()">Delete</button>
+      </ng-template>
+      <ng-template #details>
+        <a routerLink="/post/details/{{post._id}}" routerLinkActive="active" class="btn btn-primary">Details</a>
+      </ng-template>
+    </div>
+  </div>
+</div> -->
+<mat-card class="card">
+  <mat-card-title class="title">{{post.title}}</mat-card-title>
+  <mat-card-subtitle class="author">by {{post.creator.username}}</mat-card-subtitle>
+  <a (click)="openDialog()"><img mat-card-image src="{{post.imageUrl}}"></a>
+  <!-- <a routerLink="/post/details/{{post._id}}" routerLinkActive="active"><img mat-card-image src="{{post.imageUrl}}"></a> -->
+  <mat-card-content>
+    <p>{{post.content | shortenString:100}}</p>
+  </mat-card-content>
+  <mat-card-actions class="text-center">
+    <div *ngIf="post.status.toLowerCase() === 'pending';then adminTool else details">here is ignored</div>
+    <ng-template #adminTool>
+      <button mat-raised-button color="primary" (click)="approvePost()">Approve</button>
+      <button mat-raised-button color="primary" routerLink="/post/edit/{{post._id}}"
+        routerLinkActive="active">Edit</button>
+      <button mat-raised-button color="primary" (click)="deletePost()">Delete</button>
+    </ng-template>
+    <ng-template #details>
+      <button mat-raised-button color="primary" routerLink="/post/details/{{post._id}}"
+        routerLinkActive="active">Details</button>
+    </ng-template>
+  </mat-card-actions>
+</mat-card>

@@ -2,7 +2,6 @@ import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { PageEvent } from '@angular/material';
 
-import { UserService } from './../../core/services/user.service';
 import { Post } from '../shared/models/post';
 
 
@@ -21,7 +20,6 @@ export class HomeComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private userService: UserService
   ) { }
 
   ngOnInit() {

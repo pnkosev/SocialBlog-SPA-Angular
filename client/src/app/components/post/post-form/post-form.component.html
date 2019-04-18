@@ -3,7 +3,7 @@
     <div class="col-lg-3"></div>
     <div class="col-lg-6">
       <h1 class="text-center">{{btn}} Post</h1>
-      <form (submit)="submitPost()" [formGroup]="form">
+      <form (ngSubmit)="submitPost()" [formGroup]="form">
         <div class="form-group input-group">
           <div class="input-group-prepend">
             <span class="input-group-text"><i class="material-icons">title</i></span>

@@ -1,0 +1,16 @@
+<form (ngSubmit)="postComment()" [formGroup]="form" fxLayout="column" fxLayoutAlign="center center">
+  <mat-form-field appearance="outline">
+    <mat-label>{{msg}} your comment</mat-label>
+    <textarea formControlName="content" matInput placeholder="Type your comment" rows="7"></textarea>
+    <mat-icon matSuffix>question_answer</mat-icon>
+    <mat-error *ngIf="form.get('content').hasError('required')">Please leave a comment</mat-error>
+    <mat-error *ngIf="form.get('content').hasError('minlength')">Comment must be at least 10 symbols long</mat-error>
+    <mat-error *ngIf="form.get('content').hasError('maxlength')">Comment must not exceed 500 symbols</mat-error>
+  </mat-form-field>
+  <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="2rem">
+    <ng-template [ngIf]="comment">
+      <a #backBtn mat-fab color="primary" (click)="goBack()" routerLinkActive="active">Back</a>
+    </ng-template>
+    <button [disabled]="form.invalid || !form.dirty" type="submit" mat-fab color="primary">{{btnText}}</button>
+  </div>
+</form>

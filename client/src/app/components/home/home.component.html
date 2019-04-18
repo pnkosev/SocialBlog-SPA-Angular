@@ -4,7 +4,7 @@
   [pageSizeOptions]="pageSizeOptions"
   (page)="onPageChange($event)">
 </mat-paginator>
-<div class="row">
+<div class="cards-layout">
   <app-post *ngFor="let post of activePosts" [post]="post"></app-post>
 </div>
 <app-scroll-to-top></app-scroll-to-top>
