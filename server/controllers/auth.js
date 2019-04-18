@@ -114,7 +114,11 @@ module.exports = {
 			.findById(userId)
 			.populate({
 				path: 'posts',
-				match: { status: 'Approved' }
+				match: { status: 'Approved' },
+				populate: {
+					path: 'creator',
+					select: 'username _id'
+				}
 			})
 			.then(user => {
 				if (user.posts.length) {
