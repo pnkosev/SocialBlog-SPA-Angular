@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
-import { Post } from './../models/post';
+import { Post } from '../models/post.model';
 
 @Component({
   selector: 'app-dialog-box',
@@ -21,7 +21,9 @@ export class DialogBoxComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.contentToShow = this.data.post.content.substring(0, this.contentLength);
+    if (this.data.post) {
+      this.contentToShow = this.data.post.content.substring(0, this.contentLength);
+    }
   }
 
   readMore() {

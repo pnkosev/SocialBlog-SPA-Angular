@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { environment } from '../../../environments/environment';
-import { Post } from 'src/app/components/shared/models/post';
+import { Post } from 'src/app/components/shared/models/post.model';
 
 const baseURL = `${environment.ApiURL}/post`;
 

@@ -2,7 +2,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { PageEvent } from '@angular/material';
 
-import { Post } from '../shared/models/post';
+import { Post } from '../shared/models/post.model';
 
 
 @Component({

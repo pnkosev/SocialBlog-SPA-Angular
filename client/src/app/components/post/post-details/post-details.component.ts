@@ -8,8 +8,8 @@ import { PostService } from './../../../core/services/post.service';
 import { UserService } from './../../../core/services/user.service';
 import { CommentService } from './../../../core/services/comment.service';
 
-import { Post } from 'src/app/components/shared/models/post';
-import { Comment } from '../../shared/models/comment';
+import { Post } from 'src/app/components/shared/models/post.model';
+import { Comment } from '../../shared/models/comment.model';
 import { DialogBoxComponent } from '../../shared/dialog-box/dialog-box.component';
 
 
@@ -24,6 +24,10 @@ export class PostDetailsComponent implements OnInit, DoCheck, OnDestroy {
   isAdmin: boolean;
   commentNum: string;
   private isAlive$ = new Subject();
+
+  color = 'primary';
+  mode = 'indeterminate';
+  value = 50;
 
   constructor(
     private route: ActivatedRoute,

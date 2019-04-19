@@ -19,6 +19,7 @@ import {
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
   imports: [
@@ -40,6 +41,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     MatSortModule,
     MatBadgeModule,
     MatExpansionModule,
+    MatProgressSpinnerModule,
   ],
   exports: [
     FlexLayoutModule,
@@ -60,6 +62,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     MatSortModule,
     MatBadgeModule,
     MatExpansionModule,
+    MatProgressSpinnerModule,
   ]
 })
 export class MaterialModule { }

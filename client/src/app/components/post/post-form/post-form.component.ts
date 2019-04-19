@@ -1,7 +1,7 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { FormBuilder, Validators, FormControl, FormGroup } from '@angular/forms';
 
-import { Post } from 'src/app/components/shared/models/post';
+import { Post } from 'src/app/components/shared/models/post.model';
 
 @Component({
   selector: 'app-post-form',

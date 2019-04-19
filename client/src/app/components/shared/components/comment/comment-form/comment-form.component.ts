@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
-import { Comment } from '../../../models/comment';
+import { Comment } from '../../../models/comment.model';
 
 
 @Component({

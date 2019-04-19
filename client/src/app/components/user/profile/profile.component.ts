@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { PageEvent } from '@angular/material';
 
-import { Post } from '../../shared/models/post';
+import { Post } from '../../shared/models/post.model';
 
 @Component({
   selector: 'app-profile',

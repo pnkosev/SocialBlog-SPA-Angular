@@ -6,7 +6,7 @@ import { Subscription } from 'rxjs';
 
 import { UserService } from 'src/app/core/services/user.service';
 import { CommentService } from './../../../core/services/comment.service';
-import { Comment } from './../../shared/models/comment';
+import { Comment } from '../../shared/models/comment.model';
 
 @Component({
   selector: 'app-comment-edit',

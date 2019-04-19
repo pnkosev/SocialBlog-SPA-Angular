@@ -4,7 +4,14 @@
   [pageSizeOptions]="pageSizeOptions"
   (page)="onPageChange($event)">
 </mat-paginator>
-<div class="cards-layout">
-    <app-post *ngFor="let post of activePosts" [post]="post"></app-post>
-</div>
+<h2>Your posts:</h2>
+<div *ngIf="activePosts.length; then posts; else none">this is invisible</div>
+<ng-template #none>
+  <p class="no-posts-msg">You currently don't have any posts.</p>
+</ng-template>
+<ng-template #posts>
+  <div class="cards-layout">
+      <app-post *ngFor="let post of activePosts" [post]="post"></app-post>
+  </div>
+</ng-template>
 <app-scroll-to-top></app-scroll-to-top>

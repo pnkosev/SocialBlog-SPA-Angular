@@ -3,7 +3,7 @@ import { MatDialog } from '@angular/material';
 
 import { UserService } from './../../../../../core/services/user.service';
 import { DialogBoxComponent } from '../../../dialog-box/dialog-box.component';
-import { Comment } from '../../../models/comment';
+import { Comment } from '../../../models/comment.model';
 
 @Component({
   selector: 'app-comment',

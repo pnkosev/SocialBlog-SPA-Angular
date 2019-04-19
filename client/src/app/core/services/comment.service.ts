@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { environment } from '../../../environments/environment';
-import { Comment } from './../../components/shared/models/comment';
+import { Comment } from '../../components/shared/models/comment.model';
 
 const baseURL = `${environment.ApiURL}/comment`;
 

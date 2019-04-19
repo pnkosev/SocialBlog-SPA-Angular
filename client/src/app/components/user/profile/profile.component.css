@@ -9,3 +9,12 @@
 .mat-paginator {
   z-index: 10;
 }
+
+.no-posts-msg {
+  font-family: "Georgia", sans-serif;
+  color: black;
+  ;
+  font-style: italic;
+  margin: 0;
+  padding: 1rem 2rem;
+}

@@ -1,23 +1,48 @@
+h2 {
+  margin-bottom: 2rem;
+}
+
+.cards-layout {
+  margin: 1rem 3.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .row {
-    margin: 0;
+  margin: 0;
 }
 
-.posts > .row {
-    border-bottom: 2px solid black;
+.posts {
+  margin-top: 3rem;
 }
 
-.posts > h2 {
-    text-decoration: underline;
+.posts>.row {
+  border-bottom: 2px solid black;
+}
+
+.posts>h2 {
+  text-decoration: underline;
 }
 
 .comments {
-    margin-top: 5rem;
+  margin-top: 5rem;
 }
 
-.comments > h2 {
-    text-decoration: underline;
+.comments>h2 {
+  text-decoration: underline;
 }
 
 .comment-title {
-    margin-bottom: 2rem;
+  margin-bottom: 2rem;
+}
+
+.pending {
+  font-family: "Georgia", sans-serif;
+  color: black;
+  ;
+  font-style: italic;
+  margin: 0;
+  padding: 1rem 2rem;
 }

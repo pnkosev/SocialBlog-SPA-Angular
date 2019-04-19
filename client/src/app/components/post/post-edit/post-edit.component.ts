@@ -5,7 +5,7 @@ import { Subscription } from 'rxjs';
 
 import { UserService } from './../../../core/services/user.service';
 import { PostService } from './../../../core/services/post.service';
-import { Post } from '../../shared/models/post';
+import { Post } from '../../shared/models/post.model';
 
 @Component({
   selector: 'app-post-edit',

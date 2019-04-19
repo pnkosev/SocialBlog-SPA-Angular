@@ -3,8 +3,8 @@ import { Observable, Subject } from 'rxjs';
 
 import { PostService } from './../../../core/services/post.service';
 import { CommentService } from './../../../core/services/comment.service';
-import { Post } from '../../shared/models/post';
-import { Comment } from './../../shared/models/comment';
+import { Post } from '../../shared/models/post.model';
+import { Comment } from '../../shared/models/comment.model';
 import { takeUntil } from 'rxjs/operators';
 
 @Component({
