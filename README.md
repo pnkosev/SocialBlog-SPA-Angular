@@ -1,4 +1,4 @@
-# Social Blog SPA (using Angular)
+# Social Blog SPA (Angular 7)
 Software University 2019
 
 ## Tech
