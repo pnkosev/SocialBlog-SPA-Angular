@@ -1,7 +1,7 @@
 # ANGULAR-PROJECT
 SoftUni2019
 
-## BLOG/FORUM (go figure)
+## Social Blog
 
 ## Design
 The app has the following structure:
