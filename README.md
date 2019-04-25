@@ -3,7 +3,7 @@ SoftUni2019
 
 ## Social Blog
 
-## Design
+# Design
 The app has the following structure:
 * Guests (anonymous users) are:
 	* allowed to the home page and see the all the posts
