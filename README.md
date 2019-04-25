@@ -4,7 +4,7 @@ Software University 2019
 ## Tech
 * Front-end:
 	* Angular - Platform for building mobile and desktop web applications
-	* Material - design system
+	* Angular Material - design system
 
 * Back-end:
 	* NodeJS - Event-driven I/O for the back-end
