@@ -1,7 +1,5 @@
-# Social Blog SPA
+# Social Blog SPA (using Angular)
 Software University 2019
-
-## Angular Project
 
 ## Tech
 * Front-end:
