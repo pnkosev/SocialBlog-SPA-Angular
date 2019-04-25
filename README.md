@@ -19,6 +19,7 @@ Software University 2019
 	* Lazy-loading for most of the modules so the app can start faste
 	* Shared module for components, directives and pipes that can be imported into any feature module
 	* Services for each major feature
+	* Resolvers to fetch some of the data
 	* Guards to prevent unauthorized users to view routes that require authentication or admin rights
 	* Interceptors for attaching JWT token to the request headers, showing notifications from the server response and error handling
 	* Custom pipes
