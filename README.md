@@ -1,7 +1,7 @@
-# ANGULAR-PROJECT
-SoftUni2019
+# Social Blog SPA
+Software University 2019
 
-## Social Blog
+## Angular Project
 
 ## Tech
 * Front-end:
