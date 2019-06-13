@@ -16,7 +16,7 @@ Software University 2019
 
 * The goal of this project is to show the core concepts of building SPA with ExpressJS and Angular. In this project I've used:
 	* Wrapped each major feature into a module
-	* Lazy-loading for most of the modules so the app can start faste
+	* Lazy-loading for most of the modules so the app can start fast
 	* Shared module for components, directives and pipes that can be imported into any feature module
 	* Services for each major feature
 	* Resolvers to fetch some of the data
